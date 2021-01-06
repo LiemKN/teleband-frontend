@@ -63,7 +63,7 @@ function StudentAssignment({assignmentId, currentUser, currentUserType, studentA
         accompanimentRecordingAudio.pause()
         accompanimentRecordingAudio.currentTime = 0
         mediaRecorder.addEventListener('stop', () => {
-            console.log("stopping recording") //what does the rest of this function/event listener do
+            // console.log("stopping recording") //what does the rest of this function/event listener do
         })
         activeSet(false)
     }
@@ -77,7 +77,7 @@ function StudentAssignment({assignmentId, currentUser, currentUserType, studentA
         let formData = new FormData()
         formData.append("school_id", currentUser.school_id)
         formData.append("student_recording", createFileFromBlob())
-        console.log(createFileFromBlob())
+        // console.log(createFileFromBlob())
 
         fetch(`${FetchURL}student_assignments/${assignmentId}/submit_recording`, {
             method: "PATCH",

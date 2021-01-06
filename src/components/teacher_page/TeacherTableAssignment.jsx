@@ -46,7 +46,6 @@ function TeacherTableAssignment({ assignmentDetail, currentUser, setCurrentUser 
                 const updatedStudentData = currentUser.studentData.map(studentData => {
                         const updatedAssignments = studentData.assignments.map(a=>{
                             if(a.student_assignment.id===json.student_assignment.id){
-                                console.log("yay!", {...a, student_assignment: json.student_assignment})
                                 return {...a, student_assignment: json.student_assignment}
                             }else{
                                 return a

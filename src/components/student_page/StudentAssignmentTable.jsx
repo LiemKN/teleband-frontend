@@ -17,7 +17,6 @@ function createData(assignment, submitted) {
 
 function StudentAssignmentTable({currentUser, studentAssignments}) {
 
-  console.log('StudentAssignmentTable({currentUser, studentAssignments})', currentUser, studentAssignments)
   const classes = useStyles();
   const history = useHistory();
 

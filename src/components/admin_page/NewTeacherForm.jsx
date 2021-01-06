@@ -9,7 +9,6 @@ function NewTeacherForm({ teachers, setTeachers, setOpenTeacherForm }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('fetchurl', FetchURL)
         fetch(`${FetchURL}teachers`, {
             method: "POST",
             headers: {
