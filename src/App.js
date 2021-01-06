@@ -4,7 +4,7 @@ import Landing from './pages/Landing'
 import StudentAssignment from './pages/StudentAssignment'
 import StudentPage from './pages/Student'
 import TeacherPage from './pages/Teacher'
-import Admin from './pages/Admin'
+// import Admin from './pages/Admin'
 import Login from './pages/Login'
 import { BrowserRouter, Redirect, Switch, Route } from 'react-router-dom'
 import { FetchURL } from './env/url'
@@ -74,7 +74,10 @@ function App() {
           const assignmentId = props.match.params.id
           return <StudentAssignment assignmentId={assignmentId} currentUser={currentUser} currentUserType={currentUserType} studentAssignments={studentAssignments} setStudentAssignments={setStudentAssignments}/>
           }}  />
-        <Route exact path="/admin" component={Admin} />
+        {/* <Route exact path="/admin" component={Admin} /> */}
+        <Route>
+          <Landing />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
