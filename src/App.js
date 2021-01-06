@@ -34,13 +34,20 @@ function App() {
         }
       }).then(resp => resp.json())
         .then(student => {
-          setCurrentUser(student)
-          setCurrentUserType("student")
-          setStudentAssignments(student.student_assignments)
+          if (student) {
+            setCurrentUser(student)
+            setCurrentUserType("student")
+            setStudentAssignments(student.student_assignments)
+          }
         })
     }
   }
     , [])
+
+  // const proxySetUser = (u) => {
+  //   console.log('u', u)
+  //   return setCurrentUser(u)
+  // }
 
   function clearUserStates() {
     window.localStorage.clear()
@@ -62,8 +69,6 @@ function App() {
           }
         }} />
         <Route exact path="/login/:teacher?" render={({match}) => {
-          console.log('match', match)
-          console.log('match?.params?.teacher', match?.params?.teacher)
           if (match?.params?.teacher === 'teacher') { //TODO add support for 
             return <Login setCurrentUser={setCurrentUser} setCurrentUserType={setCurrentUserType} setStudentAssignments={setStudentAssignments} teacher={true}/>
           } else {
