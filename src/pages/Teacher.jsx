@@ -10,6 +10,8 @@ import NewStudentForm from '../components/teacher_page/NewStudentForm'
 import CSVStudentImportForm from '../components/teacher_page/CSVStudentImportForm'
 import TeacherTable from '../components/teacher_page/TeacherTable'
 import '../style/TeacherPage.css'
+import { useHistory } from 'react-router-dom'
+
 
 function TeacherPage({ currentUser, setCurrentUser }) {
     //const [updateAssignment, updateAssignmentSet] = useState({})
@@ -18,6 +20,13 @@ function TeacherPage({ currentUser, setCurrentUser }) {
     const [openCSVStudentImportForm, setOpenCSVStudentImportForm] = useState(false)
     let assignmentOrder=[]
     let titles=[]
+    
+    const history = useHistory()
+
+    function handleLogin(evt) {
+        evt.preventDefault()
+        history.push('/login/teacher')
+    }
 
     if(currentUser && currentUser.studentData.length>0){
         assignmentOrder = currentUser.studentData[0].assignments.sort((a,b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1: -1)
@@ -139,11 +148,19 @@ function TeacherPage({ currentUser, setCurrentUser }) {
                         </>
                     :  
                     <Paper style={{width:"100%", marginLeft:"auto", marginBottom:"20px", marginTop: "20px", padding:"20px"}}>
-                        <Typography align="center" variant="h4">Please log in.</Typography>
+                        <Typography align="center" variant="h4">Please
+                            <Button variant="contained" style={{marginLeft: '1rem'}} color="primary" href="/login/teacher" onClick={(evt) => handleLogin(evt)} >
+                                Login
+                            </Button>
+                        </Typography>
                     </Paper>
                 :
                 <Paper style={{width:"100%", marginLeft:"auto", marginBottom:"20px", marginTop: "20px", padding:"20px"}}>
-                    <Typography align="center" variant="h4">Please log in.</Typography>
+                        <Typography align="center" variant="h4">Please
+                            <Button variant="contained" style={{marginLeft: '1rem'}} color="primary" href="/login/teacher" onClick={(evt) => handleLogin(evt)} >
+                                Login
+                            </Button>
+                        </Typography>
                 </Paper>
             }
         </div>

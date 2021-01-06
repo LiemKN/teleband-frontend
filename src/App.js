@@ -61,8 +61,14 @@ function App() {
             return <Landing />
           }
         }} />
-        <Route exact path="/login" render={() => {
-          return < Login setCurrentUser={setCurrentUser} setCurrentUserType={setCurrentUserType} setStudentAssignments={setStudentAssignments}/>
+        <Route exact path="/login/:teacher?" render={({match}) => {
+          console.log('match', match)
+          console.log('match?.params?.teacher', match?.params?.teacher)
+          if (match?.params?.teacher === 'teacher') { //TODO add support for 
+            return <Login setCurrentUser={setCurrentUser} setCurrentUserType={setCurrentUserType} setStudentAssignments={setStudentAssignments} teacher={true}/>
+          } else {
+            return <Login setCurrentUser={setCurrentUser} setCurrentUserType={setCurrentUserType} setStudentAssignments={setStudentAssignments} />
+          }
         }} />
         <Route exact path="/student" render={() => {
           return < StudentPage currentUser={currentUser} studentAssignments={studentAssignments} />

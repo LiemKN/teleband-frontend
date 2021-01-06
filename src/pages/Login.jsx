@@ -24,11 +24,11 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function Login({setCurrentUser,setCurrentUserType,setStudentAssignments}) {
+function Login({setCurrentUser,setCurrentUserType,setStudentAssignments, teacher=false}) {
     // const { handleSubmit: handleSubmitStudent, register: registerStudent, errors: errorsStudent } = useForm();
     const { handleSubmit: handleSubmitStudent, register: registerStudent } = useForm();
     const { handleSubmit: handleSubmitTeacher, register: registerTeacher, errors: errorsTeacher } = useForm()
-    const [student, setStudent] = useState(false)
+    const [student, setStudent] = useState(!teacher)
     const history = useHistory();
     const classes = useStyles();
 
@@ -79,7 +79,7 @@ function Login({setCurrentUser,setCurrentUserType,setStudentAssignments}) {
                     </Grid>
                     <Grid item>
                         <label className="switch">
-                            <input onClick={() => setStudent(student => !student)} type="checkbox" />
+                            <input onClick={() => setStudent(student => !student)} type="checkbox" defaultChecked={!teacher} autoComplete="off" />
                             <span className="slider round"></span>
                         </label>
                     </Grid>
