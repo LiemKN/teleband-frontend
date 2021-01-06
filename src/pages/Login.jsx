@@ -53,18 +53,20 @@ function Login({setCurrentUser,setCurrentUserType,setStudentAssignments, teacher
             if (json.error) {
                 alert(json.message)
             } else {
-                if (type === "teacher") {
-                    localStorage.setItem('jwt', json.token)
-                } else if (type === "student") {
-                    localStorage.setItem('jwt', json.school_id)
-                }
+                let userData
+                localStorage.setItem('jwt', json.token)
                 localStorage.setItem('type', type)
-                setCurrentUser(json)
+                if (type === "teacher") {
+                    userData = json
+                } else if (type === "student") {
+                    userData = JSON.parse(json.profile)
+                }
+                setCurrentUser(userData)
                 setCurrentUserType(type)
                 if(type==="teacher"){
                     history.push("/teacher")
                 }else{
-                    setStudentAssignments(json.student_assignments)
+                    setStudentAssignments(userData.student_assignments)
                     history.push("/student")
                 }
             }
