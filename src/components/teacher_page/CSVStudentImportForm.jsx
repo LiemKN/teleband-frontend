@@ -11,7 +11,10 @@ function CSVStudentImportForm ({ setOpenCSVStudentImportForm, currentUser, setCu
         formData.append('csv', csv)
         fetch(`${FetchURL}students/${currentUser.teacher.id}/classlist`, {
             method: "POST",
-            body: formData
+            body: formData,
+            headers: {
+                "Authentication": localStorage.getItem('jwt')
+            }
           }).then(resp=>resp.json())
           .then(json => {
               if(json.error){

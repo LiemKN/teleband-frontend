@@ -14,8 +14,11 @@ const AdminTeacherCard = ({ teacher, teachers, setTeachers, handleClickEditTeach
           `Permanently remove "${teacher.name}" from the database?`
         )
         return response ? 
-        fetch(`${FetchURL}teachers/${teacher.id}`,{
-                 method: "DELETE"
+        fetch(`${FetchURL}teachers/${teacher.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Authentication": localStorage.getItem('jwt')
+                }
              })
              .then(resp => resp.json())
              .then((json) => {

@@ -27,7 +27,10 @@ function NewAssignmentForm({ assignments, setAssignments, formType, setOpenAssig
         }
       fetch(`${FetchURL}assignments`, {
           method: "POST",
-          body: formData
+          body: formData,
+          headers: {
+            "Authentication": localStorage.getItem('jwt')
+          }
         }).then(resp=>resp.json())
         .then(json => {
           if(json.error){

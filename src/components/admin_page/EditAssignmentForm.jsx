@@ -27,7 +27,10 @@ function EditAssignmentForm({ activeAssignment, handleCloseEditAssignmentForm, a
         }
       fetch(`${FetchURL}assignments/${activeAssignment.id}`, {
           method: "PATCH",
-          body: formData
+          body: formData,
+          headers: {
+            "Authentication": localStorage.getItem('jwt')
+          }
         }).then(resp=>resp.json())
         .then(json => {
           const newAssignmentList = assignments.map(a=>{

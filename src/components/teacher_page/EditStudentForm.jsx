@@ -12,7 +12,8 @@ function EditStudentForm({ currentUser, setCurrentUser, setOpenEditStudentForm, 
         fetch(`${FetchURL}students/${student.id}`, {
             method: "PATCH",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authentication": localStorage.getItem('jwt')
             },
             body: JSON.stringify({ name, grade })
         }).then(resp=>resp.json())

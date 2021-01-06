@@ -15,7 +15,10 @@ const AdminAssignmentCard = ({ assignment, assignments, setAssignments, handleCl
         )
         return response ? 
         fetch(`${FetchURL}assignments/${assignment.id}`,{
-                 method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    "Authentication": localStorage.getItem('jwt')
+                }
              })
              .then(resp => resp.json())
              .then((json) => {

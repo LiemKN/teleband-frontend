@@ -9,10 +9,12 @@ function NewTeacherForm({ teachers, setTeachers, setOpenTeacherForm }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log('fetchurl', FetchURL)
         fetch(`${FetchURL}teachers`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authentication": localStorage.getItem('jwt')
               },
             body: JSON.stringify({ name, email, password })
           }).then(resp=>resp.json())

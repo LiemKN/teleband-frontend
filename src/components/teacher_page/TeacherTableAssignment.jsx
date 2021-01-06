@@ -23,7 +23,8 @@ function TeacherTableAssignment({ assignmentDetail, currentUser, setCurrentUser 
         fetch(`${FetchURL}student_assignments/${student_assignment.id}`, {
             method: "PATCH",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authentication": localStorage.getItem('jwt')
               },
             body: JSON.stringify(payload)
         })

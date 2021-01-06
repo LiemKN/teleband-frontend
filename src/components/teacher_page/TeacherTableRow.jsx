@@ -23,7 +23,10 @@ function TeacherTableRow({ studentData, assignmentOrder, currentUser, setCurrent
         )
         return response ? 
         fetch(`${FetchURL}students/${student.id}`,{
-                 method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    "Authentication": localStorage.getItem('jwt')
+                }
              })
              .then(resp => resp.json())
              .then((json) => {

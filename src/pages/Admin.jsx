@@ -20,12 +20,19 @@ const [activeAssignment, setActiveAssignment]=useState(null) //choose and assign
 const [activeTeacher, setActiveTeacher]=useState(null)
 
     useEffect(() => {
-        fetch(`${FetchURL}assignments`)
+        fetch(`${FetchURL}assignments`, {
+            headers: {
+                "Authentication": localStorage.getItem('jwt')
+            }})
         .then(resp => resp.json())
         .then(assignments => {
         setAssignments(assignments)
         })
-        fetch(`${FetchURL}teachers`)
+        fetch(`${FetchURL}teachers`, {
+            headers: {
+                "Authentication": localStorage.getItem('jwt')
+            }
+        })
         .then(resp => resp.json())
         .then(teachers => {
         setTeachers(teachers)

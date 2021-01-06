@@ -25,7 +25,11 @@ function StudentAssignment({assignmentId, currentUser, currentUserType, studentA
     const [expression, setExpression] = useState(1)
 
     useEffect(() => {
-        fetch(`${FetchURL}assignments/${assignmentId}`)
+        fetch(`${FetchURL}assignments/${assignmentId}`, {
+            headers: {
+                "Authentication": localStorage.getItem('jwt')
+            }
+        })
             .then(resp => resp.json())
             .then(assign => {
                 setAssignment(assign)
@@ -77,7 +81,10 @@ function StudentAssignment({assignmentId, currentUser, currentUserType, studentA
 
         fetch(`${FetchURL}student_assignments/${assignmentId}/submit_recording`, {
             method: "PATCH",
-            body: formData
+            body: formData,
+            headers: {
+                "Authentication": localStorage.getItem('jwt')
+            }
         })
         .then(resp => resp.json())
         .then(json => {
@@ -108,7 +115,10 @@ function StudentAssignment({assignmentId, currentUser, currentUserType, studentA
         
         fetch(`${FetchURL}student_assignments/${assignmentId}/submit_response`, {
             method: "PATCH",
-            body: formData
+            body: formData,
+            headers: {
+                "Authentication": localStorage.getItem('jwt')
+            }
         })
         .then(resp => resp.json())
         .then(json => {
@@ -138,7 +148,10 @@ function StudentAssignment({assignmentId, currentUser, currentUserType, studentA
             formData.append("student_notation", studentNotationPdf)
             fetch(`${FetchURL}student_assignments/${assignmentId}/submit_notation`, {
                 method: "PATCH",
-                body: formData
+                body: formData,
+                headers: {
+                    "Authentication": localStorage.getItem('jwt')
+                }
             })
             .then(resp => resp.json())
             .then(json => {

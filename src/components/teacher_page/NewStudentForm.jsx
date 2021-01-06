@@ -14,7 +14,8 @@ function NewStudentForm({ currentUser, setCurrentUser, setOpenNewStudentForm }) 
         fetch(`${FetchURL}students`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authentication": localStorage.getItem('jwt')
               },
             body: JSON.stringify({ school_id: randomId, name, grade, teacher_id: currentUser.teacher.id })
           }).then(resp=>resp.json())

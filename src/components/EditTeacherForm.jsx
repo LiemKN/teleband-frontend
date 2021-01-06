@@ -12,7 +12,8 @@ function EditTeacherForm({ teachers, setTeachers, setOpenEditTeacherForm, active
         fetch(`${FetchURL}teachers/${activeTeacher.id}`, {
             method: "PATCH",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authentication": localStorage.getItem('jwt')
               },
             body: JSON.stringify({ name, email, password })
           }).then(resp=>resp.json())
