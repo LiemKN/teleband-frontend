@@ -72,7 +72,9 @@ function TeacherPage({ currentUser, setCurrentUser }) {
             assignmentObject[t]= value
         })
         const nameObj = {"Name": singleStudentData.student.name}
-        return{...nameObj, ...assignmentObject}
+        const gradeObj = {"Grade": singleStudentData.student.grade}
+        const idObj = {"LoginId": singleStudentData.student.school_id}
+        return{...nameObj, ...gradeObj, ...idObj, ...assignmentObject}
       }
     function csvData(){
         return(currentUser.studentData.map(s => row(s)))
