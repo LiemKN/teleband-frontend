@@ -167,28 +167,28 @@ function TeacherTableAssignment({ assignmentDetail, currentUser, setCurrentUser 
             {submitted?
                 <Grid container direction="column">
                     <Grid item>
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            {category==="response"?
-                                <IconButton disabled>
-                                    <LockIcon style={{ color: green[200] }}/>
-                                </IconButton>
-                            :
-                                locked?
-                                <IconButton onClick={()=>setLocked(false)}>
-                                    <LockIcon style={{ color: green[500] }}/>
-                                </IconButton>
-                                :<IconButton onClick={handleGraded}>
-                                    <LockOpenIcon style={{ color: "#bab2b5" }}/>
-                                </IconButton>
-                            }
+                        <Grid container justify="flex-end">
+                            <Grid item>
+                                {category==="response"?
+                                    <IconButton disabled>
+                                        <LockIcon style={{ color: green[200] }}/>
+                                    </IconButton>
+                                :
+                                    locked?
+                                    <IconButton onClick={()=>setLocked(false)}>
+                                        <LockIcon style={{ color: green[500] }}/>
+                                    </IconButton>
+                                    :<IconButton onClick={handleGraded}>
+                                        <LockOpenIcon style={{ color: "#bab2b5" }}/>
+                                    </IconButton>
+                                }
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
                 {assignmentView()}
                     <Grid item>
                         <Grid container justify="space-around" style={{padding:"5px"}}>
-                            <Grid item>
+                            <Grid item sm={4}>
                                 <TextField
                                     disabled={locked}
                                     variant="outlined"
@@ -204,7 +204,7 @@ function TeacherTableAssignment({ assignmentDetail, currentUser, setCurrentUser 
                                     value = {rhythm}
                                 />
                             </Grid>
-                            <Grid item>
+                            <Grid item sm={4}>
                                 <TextField
                                     disabled={locked}
                                     variant="outlined"
@@ -220,7 +220,7 @@ function TeacherTableAssignment({ assignmentDetail, currentUser, setCurrentUser 
                                     value = {tone}
                                 />
                             </Grid>
-                            <Grid item>
+                            <Grid item sm={4}>
                                 <TextField
                                     disabled={locked}
                                     variant="outlined"
