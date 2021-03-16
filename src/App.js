@@ -66,7 +66,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <FlexCol>
+      <FlexCol maxWidth={false}>
         <Navbar currentUserType={currentUserType} currentUser={currentUser} clearUserStates={clearUserStates} />
         <Switch>
           <Route exact path="/" render={() => {
