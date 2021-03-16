@@ -9,6 +9,9 @@ import Login from './pages/Login'
 import { BrowserRouter, Redirect, Switch, Route } from 'react-router-dom'
 import { FetchURL } from './env/url'
 import Navbar from './components/Navbar'
+import Container from '@material-ui/core/Container';
+
+import { styled } from '@material-ui/core/styles';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -55,41 +58,49 @@ function App() {
     setCurrentUserType(undefined)
   }
 
+  const FlexCol = styled(Container)({
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100vh',
+  })
+
   return (
     <BrowserRouter>
-      <Navbar currentUserType={currentUserType} currentUser={currentUser} clearUserStates={clearUserStates} />
-      <Switch>
-        <Route exact path="/" render={() => {
-          if (currentUser && currentUserType === "teacher") {
-            return <Redirect to="/teacher" />
-          } else if (currentUser && currentUserType === "student") {
-            return <Redirect to="/student" />
-          } else {
-            return <Landing />
-          }
-        }} />
-        <Route exact path="/login/:teacher?" render={({match}) => {
-          if (match?.params?.teacher === 'teacher') { //TODO add support for 
-            return <Login setCurrentUser={setCurrentUser} setCurrentUserType={setCurrentUserType} setStudentAssignments={setStudentAssignments} teacher={true}/>
-          } else {
-            return <Login setCurrentUser={setCurrentUser} setCurrentUserType={setCurrentUserType} setStudentAssignments={setStudentAssignments} />
-          }
-        }} />
-        <Route exact path="/student" render={() => {
-          return < StudentPage currentUser={currentUser} studentAssignments={studentAssignments} />
-        }} />
-        <Route exact path="/teacher" render={() => {
-          return < TeacherPage currentUser={currentUser} setCurrentUser={setCurrentUser} />
-        }} />
-        <Route path="/assignments/:id" render={(props) => {
-          const assignmentId = props.match.params.id
-          return <StudentAssignment assignmentId={assignmentId} currentUser={currentUser} currentUserType={currentUserType} studentAssignments={studentAssignments} setStudentAssignments={setStudentAssignments}/>
-          }}  />
-        {/* <Route exact path="/admin" component={Admin} /> */}
-        <Route>
-          <Landing />
-        </Route>
-      </Switch>
+      <FlexCol>
+        <Navbar currentUserType={currentUserType} currentUser={currentUser} clearUserStates={clearUserStates} />
+        <Switch>
+          <Route exact path="/" render={() => {
+            if (currentUser && currentUserType === "teacher") {
+              return <Redirect to="/teacher" />
+            } else if (currentUser && currentUserType === "student") {
+              return <Redirect to="/student" />
+            } else {
+              return <Landing />
+            }
+          }} />
+          <Route exact path="/login/:teacher?" render={({match}) => {
+            if (match?.params?.teacher === 'teacher') { //TODO add support for 
+              return <Login setCurrentUser={setCurrentUser} setCurrentUserType={setCurrentUserType} setStudentAssignments={setStudentAssignments} teacher={true}/>
+            } else {
+              return <Login setCurrentUser={setCurrentUser} setCurrentUserType={setCurrentUserType} setStudentAssignments={setStudentAssignments} />
+            }
+          }} />
+          <Route exact path="/student" render={() => {
+            return < StudentPage currentUser={currentUser} studentAssignments={studentAssignments} />
+          }} />
+          <Route exact path="/teacher" render={() => {
+            return < TeacherPage currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          }} />
+          <Route path="/assignments/:id" render={(props) => {
+            const assignmentId = props.match.params.id
+            return <StudentAssignment assignmentId={assignmentId} currentUser={currentUser} currentUserType={currentUserType} studentAssignments={studentAssignments} setStudentAssignments={setStudentAssignments}/>
+            }}  />
+          {/* <Route exact path="/admin" component={Admin} /> */}
+          <Route>
+            <Landing />
+          </Route>
+        </Switch>
+      </FlexCol>
     </BrowserRouter>
   );
 }

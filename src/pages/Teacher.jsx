@@ -81,31 +81,34 @@ function TeacherPage({ currentUser, setCurrentUser }) {
     }
 
     return (
-        <div style={{margin: "1em"}}>
-            {
+        // <div style={{margin: "1em"}}>
+        // <div>
                 currentUser ?
                     currentUser.teacher ?
-                        <>
+                        <div style={{display: 'flex', flexDirection: 'column', flexGrow: 1, overflow: 'hidden'}}>
                             <Dialog
                                 open={openEditTeacherForm}
                                 onClose={() => setOpenEditTeacherForm(false)}
                                 aria-label="edit teacher"
                             >
-                            <EditTeacherForm setOpenEditTeacherForm={setOpenEditTeacherForm} activeTeacher={currentUser.teacher} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                                <EditTeacherForm setOpenEditTeacherForm={setOpenEditTeacherForm} activeTeacher={currentUser.teacher} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
                             </Dialog>
                             <Dialog
                                 open={openNewStudentForm}
                                 onClose={() => setOpenNewStudentForm(false)}
                                 aria-label="add student"
                             >
-                            <NewStudentForm setOpenNewStudentForm={setOpenNewStudentForm} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                                <NewStudentForm setOpenNewStudentForm={setOpenNewStudentForm} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
                             </Dialog>
                             <Dialog
                                 open={openCSVStudentImportForm}
                                 onClose={() => setOpenCSVStudentImportForm(false)}
                                 aria-label="import student data"
                             >
-                            <CSVStudentImportForm setOpenCSVStudentImportForm={setOpenCSVStudentImportForm} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                                <CSVStudentImportForm
+                                    setOpenCSVStudentImportForm={setOpenCSVStudentImportForm}
+                                    currentUser={currentUser}
+                                    setCurrentUser={setCurrentUser}/>
                             </Dialog>
                             <Paper style={{width:"100%", marginLeft:"auto", marginBottom:"20px", marginTop: "20px"}}>
                                 <Grid container direction = "row" justify="space-between" style={{padding: "10px"}}>
@@ -147,7 +150,7 @@ function TeacherPage({ currentUser, setCurrentUser }) {
                                 null
                             }
                             
-                        </>
+                        </div>
                     :  
                     <Paper style={{width:"100%", marginLeft:"auto", marginBottom:"20px", marginTop: "20px", padding:"20px"}}>
                         <Typography align="center" variant="h4">Please
@@ -164,8 +167,7 @@ function TeacherPage({ currentUser, setCurrentUser }) {
                             </Button>
                         </Typography>
                 </Paper>
-            }
-        </div>
+        // </div>
     )
 }
 
